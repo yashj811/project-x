@@ -7,9 +7,10 @@ require("dotenv").config({ path: "./.env" });
 
 const AuthRoutes = require("./routes/AuthRoutes");
 const UserProfileRoutes = require("./routes/UserProfileRoutes");
-// const CryptoRoutes = require("./routes/CryptoRoutes");
-// const ResumeRoutes = require("./routes/ResumeRoutes");
-// const BlogRoutes = require("./routes/BlogRoutes");
+const SchoolRoutes = require("./routes/SchoolRoutes");
+const UserRoutes = require("./routes/UserRoutes");
+const ClassRoutes = require("./routes/ClassRoutes");
+const SubjectRoutes = require("./routes/SubjectRoutes");
 
 const app = express();
 
@@ -22,9 +23,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/v1/auth", AuthRoutes);
-app.use("/api/v1", UserProfileRoutes);
-// app.use("/v0", ResumeRoutes);
-// app.use("/v0/blog", BlogRoutes);
+app.use("/api/v1/user/profile", UserProfileRoutes);
+app.use("/api/v1/school", SchoolRoutes);
+app.use("/api/v1/users", UserRoutes);
+app.use("/api/v1/class", ClassRoutes);
+app.use("/api/v1/subject", SubjectRoutes);
+
 
 // if (process.env.NODE_ENV === "production") {
 //   app.use(express.static("client/build"));

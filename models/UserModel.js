@@ -15,7 +15,12 @@ const userSchema = mongoose.Schema({
     type: Number,
     default: 0, //      {0: admin , 1: student, 2: teacher}
   },
-});
+  schoolId : {
+    type : mongoose.Schema.Types.ObjectId, 
+    ref:"school", 
+    required: true
+  }
+},{timestamps : true});
 
 const User = mongoose.model("user", userSchema);
 (async () => {

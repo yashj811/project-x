@@ -1,43 +1,62 @@
 const mongoose = require("mongoose");
 
 const userProfileSchema = mongoose.Schema({
-  userId : {type: mongoose.Schema.Types.ObjectId , ref:"user"},
+  userId : {type: mongoose.Schema.Types.ObjectId , ref:"user", required: true},
   firstName: {
     type: String,
-    required: true,
     trim: true,
   },
   middleName: {
     type: String,
-    required: true,
     trim: true,
   },
   lastName: {
     type: String,
-    required: true,
     trim: true,
   },
   gender: {
     type: String,
-    required: true,
     trim: true,
   },
-  address: {
+  category: {
     type: String,
-    required: true,
     trim: true,
+  },
+  currentAddress: {
+    type: String,
+    trim: true,
+  },
+  permanentAddress: {
+    type: String,
+    trim: true,
+  },
+  isAddressSame : {
+    type: Boolean,
   },
   phoneNumber: {
     type: String,
-    required: true,
     trim: true,
   },
   emailId: {
     type: String,
-    required: true,
     trim: true,
   },
-});
+  dateOfBirth : {
+    type: Date,
+  },
+  dateOfJoining : {
+    type: Date,
+  },
+  idProofNumber : {
+    type: String,
+  },
+  idProofType: {
+    type: String,
+  },
+  userType: {
+    type: String,
+  }
+},{timestamps : true});
 
 const UserProfile = mongoose.model("UserProfile", userProfileSchema);
 (async () => {

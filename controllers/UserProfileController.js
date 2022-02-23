@@ -1,10 +1,4 @@
-const {
-    getHashedPassword,
-    isPasswordMatch,
-  } = require("../utils/HashPassword");
-  const { signToken } = require("../utils/JWTTokenUtility");
   const UserProfile = require("../models/UserProfileModel");
-const { roleMap } = require("../utils/ContantMaps");
   
   exports.createProfile = async (req, res) => {
     const {  userId, firstName,middleName, lastName, address, phoneNumber, emailId, gender } = req.body;
@@ -56,8 +50,8 @@ const { roleMap } = require("../utils/ContantMaps");
   };
   
   exports.getProfile = async (req, res) => {
-    const { userId } = req.body;
-    if (!userId) {
+    const { id } = req.params;
+    if (!id) {
       return res.status(400).json({
         status: 400,
         success: false,
@@ -65,7 +59,7 @@ const { roleMap } = require("../utils/ContantMaps");
       });
     } else {
       try {
-        const userProfile = await UserProfile.findOne({ userId: userId}).populate('userId');
+        const userProfile = await UserProfile.findOne({ userId: id}).populate('userId');
         if (!userProfile) {
           return res.status(400).json({
             status: 400,
